@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     #background {
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        z-index:-10;
+        background-image:url('background1.png');
+        background-repeat:no-repeat;
+        background-size:cover;
+        background-position:center 0;
+        background-attachment: fixed;
+    }
+     .img1 {
+        background-image:url('microsoftbing.png');
+        width:100%;
+        height:100%;
+        background-repeat:no-repeat;
+        background-size:cover;
+        background-position:left -10px;
+    }
+     .menu {
+        position:absolute;
+        min-width:px;
+    }
+     ul {
+        margin: 0px;
+        padding: 0px
+    }
+     ul li {
+        float:left;
+        display: inline;
+        font: 0.9em Arial, Helvetica, sans-serif;
+        height: 30px;
+        width: 50px;
+        list-style: none;
+    }
+     ul li a {
+        color:rgb(124, 118, 118);
+        text-decoration: none;
+        line-height: 20px;
+        width: 91px;
+        margin: 0px;
+        padding: 0px 0px 0px 8px;
+        display: block;
+    }
+     ul li ul li { 
+        height:25px; 
+    }
+     ul li ul li a {
+        background:white;
+        line-height:25px;
+    }
+     ul li ul {
+        visibility: hidden;
+    }
+     ul li:hover ul {
+        visibility: visible;
+    }
+     ul li ul li a:hover {
+        background:white;
+    }
+     .p {
+        position:fixed;
+        top:20px;
+        left:150px;
+    }
+     input[type=text] {
+        width:130px;
+        box-sizing:border-box;
+        border:2px solid white;
+        border-radius:10px;
+        font-size:16px;
+        background-color:white;
+        font-size:12px;
+ 
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -25px;
+        margin-top: -25px;
+ 
+        background-image:url('搜索.jpeg');
+        background-position:left;
+        background-repeat:no-repeat;
+        background-size:contain;
+        height:30px;
+        width:200px;
+ 
+        padding:12px 20px 12px 40px;
+        -webkit-transition:width 0.4s ease-in-out;
+        transition:width 0.4s ease-in-out;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color:white;
+        border-radius: 40px;
+    }
+     input[type=text]:focus {
+        width:500px;
+    }
+ 
+     input[type=button],input[type=submit],input[type=reset]
+     {
+        background-color:white;
+        color:rgb(124, 118, 118);
+        border:none;
+        padding:5px 20px;
+        margin:5px 2px;
+        cursor:pointer;
+        position:absolute;
+        top:50%;
+        left:45%;
+    }
+  </style>
+</head>
+<body>
+    <div id="background" alt="wrong">
+    </div>
+
+    <div class="img1" style="width:120px;height:60px;">
+    </div>
+
+    <div class="menu">
+        <ul>
+            <div class="p">
+                <li><a href="#picture">picture</a></li>
+                <li><a href="#video">video</a></li>
+                <li><a href="#more">more
+                    <ul>
+                        <li><a href="#map">map</a></li>
+                        <li><a href="#news">news</a></li>
+                    </ul>
+                </li>
+            </div>
+        </ul>
+    </div>
+ 
+    <input type="text" placeholder="Search...">
+    <input type="button" value="search">
+</html>
