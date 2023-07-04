@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif; /* 设置字体 */
+    margin: 0; /* 设置边距为0 */
+    padding: 0; /* 设置内边距为0 */
+    background-color: #fffbf7; /* 设置背景颜色 */
+}
+#wrapper {
+    width: 80%; /* 设置宽度为80% */
+    margin: auto; /* 设置自动边距 */
+    overflow: hidden; /* 设置溢出隐藏 */
+}
+#header {
+    background-color: #c94e4e; /* 设置背景颜色 */
+    color: #ffffff; /* 设置字体颜色 */
+    padding-top: 30px; /* 设置上内边距 */
+    padding-left: 10px;
+    min-height: 70px; /* 设置最小高度 */
+    border-bottom: #b94120 3px solid; /* 设置底部边框 */
+}
+#header a {
+    color: #ffffff; /* 设置链接颜色 */
+    text-decoration: none; /* 取消链接下划线 */
+    font-size: 16px; /* 设置字体大小 */
+}
+a {
+    color: #fd4e5a; /* 设置链接颜色 */
+}
+#banner {
+    background-image: url('images/pic10.jpg'); /* 设置背景图片 */
+    background-size: cover; /* 设置背景图片大小 */
+    min-height: 300px; /* 设置最小高度 */
+    padding-left: 10px;
+}
+.features {
+    display: flex; /* 设置为弹性布局 */
+    justify-content: space-around; /* 设置主轴对齐方式 */
+    padding: 20px 0; /* 设置内边距 */
+}
+.features article {
+    width: 30%; /* 设置宽度 */
+}
+.posts {
+    display: flex; /* 设置为弹性布局 */
+    justify-content: space-around; /* 设置主轴对齐方式 */
+    flex-wrap: wrap; /* 设置换行方式 */
+    padding: 20px 0; /* 设置内边距 */
+}
+.posts article {
+    width: 30%; /* 设置宽度 */
+    margin: 10px; /* 设置边距 */
+}
+#sidebar {
+    background-color: #713045; /* 设置背景颜色 */
+    color: #ffffff; /* 设置字体颜色 */
+    padding: 15px; /* 设置内边距 */
+    width: 25%; /* 设置宽度 */
+    float: right; /* 设置浮动方向 */
+}
+#footer {
+    background-color: #c94e4e; /* 设置背景颜色 */
+    color: #ffffff; /* 设置字体颜色 */
+    text-align: center; /* 设置文本对齐方式 */
+    padding: 20px; /* 设置内边距 */
+    margin-top: 20px; /* 设置上边距 */
+}

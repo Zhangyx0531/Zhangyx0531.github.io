@@ -1,0 +1,85 @@
+body {
+    background-color: #f4f4f479; /* 设置body背景颜色 */
+}
+a {
+    color:#61c697; /* 设置链接颜色 */
+}
+ul {
+    list-style-type: none; /* 移除无序列表前的标记 */
+}
+h2 {
+    text-align: center; /* 设置h2元素文本居中 */
+}
+/* Header */
+#header {
+    background-color: #086972; /* 设置header背景颜色 */
+    color: #ffffff; /* 设置header文本颜色 */
+    padding: 10px; /* 设置header内边距 */
+}
+.logo {
+    font-size: 24px; /* 设置logo字体大小 */
+    font-weight: bold; /* 设置logo字体粗细 */
+    color: #fff; /* 设置logo颜色 */
+    text-decoration: none; /* 移除logo下划线 */
+}
+/* Banner */
+#banner {
+    background-size: cover; /* 设置banner背景图片尺寸 */
+    padding: 50px; /* 设置banner内边距 */
+    color: #000000; /* 设置banner文本颜色 */
+}
+/* Section */
+section {
+    padding: 50px; /* 设置section内边距 */
+}
+.features {
+    display: flex; /* 设置features为flex弹性布局 */
+    justify-content: space-between; /* 设置features子元素之间的空间均匀分布 */
+}
+.features article {
+    flex-basis: 25%; /* 设置features中的article元素占用空间比例 */
+    text-align: center; /* 设置features中的article元素文本居中 */
+}
+.features h3 {
+    margin-top: 20px; /* 设置features中的h3元素上边距 */
+}
+/* Posts */
+.posts {
+    display: grid; /* 设置posts为网格布局 */
+    grid-template-columns: repeat(3, 1fr); /* 设置posts的列数和列宽 */
+    grid-gap: 20px; /* 设置posts的网格间距 */
+}
+.posts article {
+    text-align: center; /* 设置posts中的article元素文本居中 */
+}
+.posts h3 {
+    margin-top: 20px; /* 设置posts中的h3元素上边距 */
+}
+/* Sidebar */
+#sidebar {
+    background-color: #f4f4f4; /* 设置sidebar背景颜色 */
+    padding: 20px; /* 设置sidebar内边距 */
+}
+#search {
+    text-align: center; /* 设置search文本居中 */
+}
+/* Menu */
+#menu ul {
+    list-style: none; /* 移除menu中的无序列表前的标记 */
+    padding: 35; /* 设置menu中的无序列表内边距 */
+}
+#menu ul li {
+    margin-bottom: 10px; /* 设置menu中的列表项下边距 */
+    text-align: center; /* 设置menu中的列表项文本居中 */
+}
+#menu ul li a {
+    text-decoration: none; /* 移除menu中的链接下划线 */
+    color: #333; /* 设置menu中的链接颜色 */
+}
+/* Footer */
+#footer {
+    background-color: #071a52; /* 设置footer背景颜色 */
+    color: #fff; /* 设置footer文本颜色 */
+    padding: 10px; /* 设置footer内边距 */
+    text-align: center; /* 设置footer文本居中 */
+}
