@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>游玩界面</title>
+    <style>
+      #game {
+        width: 300px;
+        height: 400px;
+        border: 1px solid black;
+        position: relative;
+      }
+      .opt {
+        display: flex;
+        flex-direction: column;
+      }
+      .opt button {
+        margin: 0.5rem 1.2rem;
+      }
+      .rectangle {
+        position: absolute;
+        border: 1px solid black;
+        background-color: lightblue;
+
+        box-sizing: border-box;
+        /* 默认值为content-box */
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="opt">
+      <button>重新开始</button>
+      <button id="check">check</button>
+    </div>
+
+    <div id="game"></div>
+
+    <script>
+      document.querySelector("button").addEventListener("click", function() {
+        location.reload();
+      });
+      /* 声明变量最好使用let（允许变动）或const（不允许变动）关键字，
+       *  减少对var关键字的使用，
+       *  因为其作用域、可被重复声明等特点容易给代码带来错误，不便于检查
+       */
+      const game = document.getElementById("game");
+
+      const maxWidth = 300; //框的宽
+      const maxHeight = 400; //框的高
+
+      let scaleW = 4; //列数
+      let scaleH = 4; //行数
+
+      let recs = Array(scaleW*scaleH); //保存所有生成的长方形块
+
+      //均分后每个长方形块的基础宽/高
+      let baseItemW = maxWidth / scaleW;
+      let baseItemH = maxHeight / scaleH;
+
+      //储存宽和高的列表
+      let widthList = randomLength(scaleW, baseItemW);
+      let heightList = randomLength(scaleH, baseItemH);
+
+      generateRectangles(scaleW, scaleH);
+
+      /* 在基础宽/高的基础上，随机生成宽/高：
+       *   - 参数cnt为希望生成的数量，返回一个长度为cnt的数组
+       *   - 参数baseItemLength为基础单位长度
+       */
+      function randomLength(cnt, baseItemLength) {
+        let ret = Array(cnt).fill(baseItemLength);
+        for (let i = 0; i < cnt; i++) {
+          if (i !== cnt - 1) {
+            //在一定范围内随机生成变化比例
+            let randomChange = Math.random();
+            randomChange =
+              randomChange > 0.5 ? randomChange * 0.5 : randomChange;
+
+            //防止出现长方形块过小/过大的情况，调整增减符号
+            let sign = Math.pow(-1, Math.round(Math.random() + 1));
+            sign = ret[i] < baseItemLength * 0.2 ? 1 : sign;
+
+            let floatLength = Math.round(randomChange * baseItemLength); //变化量
+
+            //下一个元素要与当前元素发生相反的变化，互相抵消
+            ret[i] += floatLength * sign;
+            ret[i + 1] -= floatLength * sign;
+          }
+        }
+        return ret;
+      }
+
+      /* 生成长方形块的函数：
+       *   - 参数scaleW与scaleH分别为宽/高划分比例，或可理解为行数与列数
+       */
+      function generateRectangles(scaleW, scaleH) {
+        //按照获得的宽与高生成长方形块
+        for (let w = 0; w < scaleW; w++) {
+          for (let h = 0; h < scaleH; h++) {
+            let rectangle = document.createElement("div");
+            rectangle.className = "rectangle";
+
+            rectangle.style.width = widthList[w] + "px";
+            rectangle.style.height = heightList[h] + "px";
+            rectangle.style.left =
+              Math.floor(Math.random() * (maxWidth - widthList[w])) + "px"; // 随机生成长方形的左边距
+            rectangle.style.top =
+              Math.floor(Math.random() * (maxHeight - heightList[h])) + "px"; // 随机生成长方形的上边距
+
+            //下条语句用于检查生成的长方形数量是否符合预期，也可作为完成拼图的依据
+            //rectangle.innerHTML = w * heightList.length + h + 1;
+
+            //保存生成的长方形
+            recs[w*scaleH+h] = rectangle;
+
+            game.appendChild(rectangle);
+          }
+        }
+      }
+
+      // 使长方形可以被拖动
+      var rectangles = document.getElementsByClassName("rectangle");
+      for (var i = 0; i < rectangles.length; i++) {
+        rectangles[i].addEventListener("mousedown", function (e) {
+          var offsetX = e.clientX - parseInt(this.style.left);
+          var offsetY = e.clientY - parseInt(this.style.top);
+          var that = this;
+          document.addEventListener("mousemove", move);
+          document.addEventListener("mouseup", function () {
+            document.removeEventListener("mousemove", move);
+          });
+
+          function move(e) {
+            var newLeft = e.clientX - offsetX;
+            var newTop = e.clientY - offsetY;
+            // 如果长方形的左边距小于0，将它设置为0
+            if (newLeft < 0) {
+              newLeft = 0;
+            }
+            // 如果长方形的上边距小于0，将它设置为0
+            if (newTop < 0) {
+              newTop = 0;
+            }
+            // 如果长方形的右边距大于区域的宽度，将它的左边距设置为区域的宽度减去长方形的宽度
+            if (newLeft + parseInt(that.style.width) > 300) {
+              newLeft = 300 - parseInt(that.style.width);
+            }
+            // 如果长方形的下边距大于区域的高度，将它的上边距设置为区域的高度减去长方形的高度
+            if (newTop + parseInt(that.style.height) > 400) {
+              newTop = 400 - parseInt(that.style.height);
+            }
+            that.style.left = newLeft + "px";
+            that.style.top = newTop + "px";
+          }
+        });
+      }
+
+      //结果检测函数
+      function check() {
+        //两个参数分别为行数与列数
+        let sumLeft = 0;
+        let res = true;
+        for (let w = 0; w < scaleW; w++) {
+          let currLeft = -1; //当前列元素的left值
+          let sumTop = 0;
+          for (let h = 0; h < scaleH; h++) {
+            //对于每一列来说，判断同属于该列上的长方形块所占高是否等于框的高
+            if (currLeft === -1) {
+              currLeft = recs[w * scaleH + h].style.left;
+            } else {
+              if (recs[w * scaleH + h].style.left !== currLeft) {
+                res = false;
+                break;
+              }
+            }
+            //offsetHeight为元素的可视高度
+            sumTop += recs[w * scaleH + h].offsetHeight;
+          }
+
+          if (sumTop !== maxHeight) {
+            res = false;
+            break;
+          }
+
+          //offsetWidth为元素的可视宽度
+          sumLeft += recs[w * scaleH].offsetWidth;
+        }
+        //对于每一行来说，判断同属于该行上的长方形块所占宽是否等于框的宽
+        if (sumLeft !== maxWidth) {
+          res = false;
+        }
+
+        if(res) {
+          alert("恭喜您成功通关！");
+        }
+        else {
+          alert("拼图失败！请再检查一下吧...");
+        }
+      }
+
+      document.querySelector("#check").addEventListener("click", check);
+    </script>
+  </body>
+</html>

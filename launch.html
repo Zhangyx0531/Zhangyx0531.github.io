@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>游戏启动页面</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url(r1.jpg);
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 80px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 阴影效果 */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #startGame {
+            font-size: 30px;
+        }
+    </style>
+  </head>
+  <body>
+    <body>
+        <div class="container">
+          <h1>联纵接横</h1>
+          <button id="startGame" >开始游戏</button>
+        </div>
+        <script>
+            document.querySelector("#startGame").addEventListener("click", function() {
+              window.location.href = "Browsergame.html"; // 假设你的游戏页面叫做game.html
+            });
+          </script>
+      </body>
+</html>
